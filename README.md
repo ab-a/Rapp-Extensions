@@ -12,7 +12,7 @@ The function `retrieveGUID` get the folder with the proper GUID in `Workspaces` 
 
 ```PowerShell
 $GUID = retrieveGUID -Folder "$env:USERPROFILE\AppData\Roaming\Microsoft\Workspaces"
-```registry
+```
 
 The function `deployApplication` is the central function and the only you'll call in the main function. It take 4 parameters :
 
