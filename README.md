@@ -1,4 +1,4 @@
-# Windows PowerShell Edit Registry Script 
+# Windows PowerShell Remote App Association Script
 #### Sometimes, when you deploying remote application, you may want to automatically associate file with the remote application on all computers in the domain.
 
 With this script you can deploy easily all modification to the registry to associate automatically your file with your remote app.
