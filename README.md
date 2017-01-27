@@ -14,7 +14,7 @@ The function `retrieveGUID` get the folder with the proper GUID in `Workspaces` 
 $GUID = retrieveGUID -Folder "$env:USERPROFILE\AppData\Roaming\Microsoft\Workspaces"
 ```
 
-The function `deployApplication` is the central function and the only you'll call in the main function. It take 4 parameters :
+The function `deployApplication` is the central function and the only you'll call in the main function. It take 4 arguments :
 
 - __`Path`__ 
 - __`Application`__ 
@@ -25,7 +25,9 @@ The function `initApplication` create keys and initialize some item.
 
 The function `deployExtensions` loop through the array to associate the extensions to the remoteapp.
 
-This script, at first is created in order to deploy on many Windows Server in production through GPO, also fix when you have problem with the icon of your distant program.
+I made the `-Path` for testing the script before run in production (for change easily the path, created key like `HKCU:Software\Scripts\Test` for example). The *normal* path is `HKCU:Software\Classes\`.
+
+This script, at first is created in order to deploy on many Windows Server in production through GPO to use with **RDSH**, also fix when you have problem with the icon of your distant program.
 
 ## Starting 
 > If you want to use this script you have to get some informations, example for Project 2016 :
