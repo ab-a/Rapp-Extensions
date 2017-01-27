@@ -39,11 +39,11 @@ function initApplication {
     New-ItemProperty -Path $Path$Application -Name "EditFlags" -PropertyType "DWord" -Value 00100000 #-erroraction 'silentlycontinue'
 
     $GUID = retrieveGUID -Folder "$env:USERPROFILE\AppData\Roaming\Microsoft\Workspaces"
-    $value = '@="' + $GUID + '\Icons\' + $ApplicationValue + '.ico,0"'    
+
+    $value = $GUID + '\Icons\' + $ApplicationValue + '.ico,0'    
     New-ItemProperty -Path "$Path$Application\DefaultIcon" -Name "(Default)" -Type "String" -Value $value #-erroraction 'silentlycontinue'
         
-    $GUID = retrieveGUID -Folder "$env:USERPROFILE\AppData\Roaming\Microsoft\Workspaces"
-    $value = '@="\"mstsc.exe\" /REMOTEFILE:\"%1\" \"' + $GUID + '\Resource\' + $ApplicationValue + '.rdp\""'
+    $value = '"mstsc.exe" /REMOTEFILE:"%1" "' + $GUID + '\Resource\' + $ApplicationValue + '.rdp"'
     New-ItemProperty -Path "$Path$Application\shell\open\command" -Name "(Default)" -Type "String" -Value $value # -erroraction 'silentlycontinue'
 }
 
@@ -57,9 +57,10 @@ function deployExtensions {
         [ValidateNotNullOrEmpty()]$Application
     )
     $app = '@="' + $Application + '"'
-    New-Item -Path "$Path$Application\$Extension" #-erroraction 'silentlycontinue'
-    New-Item -Path "$Path$Application\$Extension\$Application" #-erroraction 'silentlycontinue'
-    New-ItemProperty -Path $Path$Application\$Extension -Name "(Default)" -Type "String" -Value $app #-erroraction 'silentlycontinue'
+
+    New-Item -Path "$Path$Extension" #-erroraction 'silentlycontinue'
+    New-Item -Path "$Path$Extension\$Application" #-erroraction 'silentlycontinue'
+    New-ItemProperty -Path $Path$Extension -Name "(Default)" -Type "String" -Value $app #-erroraction 'silentlycontinue'
 }
 
 function deployApplication {
@@ -82,8 +83,8 @@ function deployApplication {
 function main {
     $extensions = @(".jpg",".png")
     
-    deployApplication -Path "HKCU:Software\Classes\" -Application "RAPP.EXAMPLE" -ApplicationValue "Example 2000 (Work Resources)" -Extension $extensions
-
+    deployApplication -Path "HKCU:Software\Classes\" -Application "RAPP.EXAMPLE" -ApplicationValue "Example 2017 (Work Resources)" -Extension $extensions
+    
     return 0 | Out-Null 
 }
 

@@ -33,6 +33,14 @@ This script, at first is created in order to deploy on many Windows Server in pr
 - __`RAPP.EXAMPLE`__ - Name of the application
 - __`Example 2016 (Work Resources)`__ - Alternative Name 
 
+> If you want to do a backup before using this script : 
+
+```PowerShell
+reg export HKCU\Software\Classes $env:USERPROFILE\Desktop\rapp-backup.reg
+```
+
+#### Remember that you have to change the `-Application`, `-ApplicationValue` variables and `$extensions` array.
+
 > On a computer who already have the remote app deployed you can find the name of the remote application in `HKEY_CURRENT_USER\Software\Classes\`, it's the folder prefixed by `RAPP`, like `RAPP.MSPROJECT`.
 You can find the alternative name in `HKEY_CURRENT_USER\Software\Classes\RAPP.MSPROJECT\shell\open\command` at the end of the default item value for example.
 
