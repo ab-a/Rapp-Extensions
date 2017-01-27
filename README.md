@@ -76,4 +76,26 @@ function main {
 }
 ```
 
-> If you do want to see the output, uncomment `-erroraction 'silentlycontinue'` at the end of the lines.
+> If you want to see the output, uncomment `-erroraction 'silentlycontinue'` at the end of the lines.
+
+## Shortcut to Desktop
+
+> You can copy the shortcut to the remote app on the user desktop. I've created another little function to do that : 
+
+```PowerShell
+function createShortcut {
+    param (
+        [parameter(Mandatory=$true)]
+        [ValidateNotNullOrEmpty()]$Application
+    )
+    $shortcutPath = $env:USERPROFILE + '\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Work Resources (RADC)\' + $Application + '.lnk'
+    $copyPath = $env:USERPROFILE + '\Desktop\' + $Application + '.lnk'
+    Copy-Item $shortcutPath $copyPath
+}
+```
+
+> You have to add the function to the script and just call it from the `deployApplication` function : 
+
+```PowerShell
+createShortcut -Application $applicationValue
+```
