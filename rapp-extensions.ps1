@@ -36,7 +36,7 @@ function initApplication {
     New-Item -Path "$Path$Application\DefaultIcon" #-erroraction 'silentlycontinue'
 
     New-ItemProperty -Path $Path$Application -Name "AppUserModelId" -PropertyType "String" -Value "Microsoft.Windows.RemoteDesktop" # -erroraction 'silentlycontinue'
-    New-ItemProperty -Path $Path$Application -Name "EditFlags" -PropertyType "DWord" -Value 00100000 #-erroraction 'silentlycontinue'
+    New-ItemProperty -Path $Path$Application -Name "EditFlags" -PropertyType "DWord" -Value 1048576 #-erroraction 'silentlycontinue'
 
     $GUID = retrieveGUID -Folder "$env:USERPROFILE\AppData\Roaming\Microsoft\Workspaces"
 
