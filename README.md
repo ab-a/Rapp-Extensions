@@ -3,30 +3,6 @@
 
 With this script you can deploy easily all modification to the registry to associate automatically your file with your remote app. This script is made to work with **RDSH**, normally you don't need this if you use Windows >= 8.
 
-These functions are native :
-
-- __`New-Item`__ 
-- __`New-ItemProperty`__ 
-
-The function `retrieveGUID` get the folder with the proper GUID in `Workspaces` folder : 
-
-```PowerShell
-$GUID = retrieveGUID -Folder "$env:USERPROFILE\AppData\Roaming\Microsoft\Workspaces"
-```
-
-The function `deployApplication` is the central function and the only you'll call in the main function. It take 4 arguments :
-
-- __`Path`__ 
-- __`Application`__ 
-- __`Application Value`__ 
-- __`Extension`__ 
-
-The function `initApplication` create keys and initialize some item.
-
-The function `deployExtensions` loop through the array to associate the extensions to the remoteapp.
-
-I made the `-Path` for testing the script before run in production (for change easily the path, created key like `HKCU:Software\Scripts\Test` for example). The *normal* path is `HKCU:Software\Classes\`.
-
 This script, at first is created in order to deploy on many Windows Server in production through GPO to use with **RDSH**, also fix when you have problem with the icon of your distant program.
 
 ## Starting 
@@ -43,18 +19,16 @@ reg export HKCU\Software\Classes $env:USERPROFILE\Desktop\rapp-backup.reg
 
 #### Remember that you have to change the `-Application`, `-ApplicationValue` variables and `$extensions` array.
 
-> On a computer who already have the remote app deployed you can find the name of the remote application in `HKEY_CURRENT_USER\Software\Classes\`, it's the folder prefixed by `RAPP`, like `RAPP.MSPROJECT`.
+On a computer who already have the remote app deployed you can find the name of the remote application in `HKEY_CURRENT_USER\Software\Classes\`, it's the folder prefixed by `RAPP`, like `RAPP.MSPROJECT`.
 You can find the alternative name in `HKEY_CURRENT_USER\Software\Classes\RAPP.MSPROJECT\shell\open\command` at the end of the default item value for example.
 
 ## Manage Extensions
-> You have to declare the list of wich extension you want to associate with the remote app. 
+You have to declare the list of wich extension you want to associate with the remote app. 
 
 - __`$extensions = @(".jpg",".png")`__
 
-#### Important : select wisely the extensions depending on wich remote app you wan't to deploy, or you'll have problem.
-
 ## Usage examples 
-> Deploy for MSProject 2016 : 
+Deploy for MSProject 2016 : 
 
 ```PowerShell
 function main {
@@ -64,7 +38,7 @@ function main {
     return 0 | Out-Null 
 }
 ```
-> Deploy for MSAccess 2013 :
+Deploy for MSAccess 2013 :
 
 ```PowerShell
 function main {
@@ -82,7 +56,7 @@ function main {
 
 ## Shortcut to Desktop
 
-> You can copy the shortcut to the remote app on the user desktop. I've created another little function to do that : 
+You can copy the shortcut to the remote app on the user desktop. I've created another little function to do that : 
 
 ```PowerShell
 function createShortcut {
@@ -96,7 +70,7 @@ function createShortcut {
 }
 ```
 
-> You have to add the function to the script and just call it from the `deployApplication` function : 
+You have to add the function to the script and just call it from the `deployApplication` function : 
 
 ```PowerShell
 createShortcut -Application $applicationValue
