@@ -50,7 +50,7 @@ function main {
 }
 ```
 
-> If you want to see the output, uncomment `-erroraction 'silentlycontinue'` at the end of the lines.
+> For clean output (hide error), uncomment `-erroraction 'silentlycontinue'` at the end of the lines.
 
 ## Shortcut to Desktop
 
