@@ -1,4 +1,7 @@
-[![License MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat-square)](LICENSE)
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
+[![made-with-powershell](https://img.shields.io/badge/Made_With-Powershell-green.svg)](https://docs.microsoft.com/fr-fr/powershell/)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-no-red.svg)](https://bitbucket.org/lbesson/ansi-colors)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
 # Windows PowerShell Remote App Association Script
 #### Sometimes, when you deploying remote application, you may want to automatically associate file with the remote application on all computers in the domain.
