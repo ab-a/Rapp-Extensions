@@ -1,3 +1,5 @@
+[![License MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat-square)](LICENSE)
+
 # Windows PowerShell Remote App Association Script
 #### Sometimes, when you deploying remote application, you may want to automatically associate file with the remote application on all computers in the domain.
 
